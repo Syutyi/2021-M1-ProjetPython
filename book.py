@@ -121,6 +121,42 @@ class Book:
         for i in range(len(self.executed_quantity)):
             print("Execute ", self.executed_quantity[i], " at ", self.executed_price[i], " on ", self.__name)
 
+    def create_dataframe_from_order_list(self, order_list, sell):
+        # Contains "SELL" if it is a selling order and "BUY" if not
+        action_list = []
+        quantity_list = []
+        price_list = []
+        id_list = []
+        name_list = []
+        for i in range(len(order_list)):
+            if sell:
+                action_list.append("SELL")
+            else:
+                action_list.append("BUY")
+            name_list.append(self.__name)
+            quantity_list.append(order_list[i].quantity())
+            price_list.append(order_list[i].price())
+            id_list.append(order_list[i].id())
+        data_to_be_converted = {'Book': name_list, 'Action': action_list, 'Quantity': quantity_list,
+                                'Price': price_list, 'ID': id_list}
+        df = pd.DataFrame(data=data_to_be_converted)
+        return df
+
+    def pandas_display(self):
+        # Creating a data frame for the buy orders
+        buy_df = self.create_dataframe_from_order_list(self.buy_orders, False)
+        # Creating a data frame for the sell odrers
+        sell_df = self.create_dataframe_from_order_list(self.sell_orders, True)
+        print("-----------------------------------------------------------")
+        print("-----------------------------------")
+        print("\n  ----- Sell-side dataframe -----")
+        print(sell_df)
+        print("\n-----------------------------------")
+        print("\n  ------ Buy-side dataframe -----")
+        print(buy_df)
+        print("\n-----------------------------------")
+        print("-----------------------------------------------------------")
+
     def print_infos(self, sell):
         # Printing the last element that has been added the list (the new order that has been inserted)
         if sell:
@@ -148,7 +184,8 @@ class Book:
         for j in range(len(self.buy_orders)):
             print("         BUY ", self.buy_orders[j].quantity(), "@", self.buy_orders[j].price(), " id =",
                   self.buy_orders[j].id())
-        print("------------------------")
+
+        self.pandas_display()
 
     # Inserting into the order book new orders
     def insert_buy(self, quantity, price):
