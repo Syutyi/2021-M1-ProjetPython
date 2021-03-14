@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import itertools
-
+import pandas as pd
 
 class Order:
     # ID That would be incremented at each iteration
