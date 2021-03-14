@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -d "_env"]
+if [ ! -d "_env" ]
 then
 	echo "The virtual environnement doest not exist yet"
 	python3 -m venv _env
