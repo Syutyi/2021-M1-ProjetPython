@@ -7,6 +7,9 @@ then
 fi
 echo "The Python virtual envrionnement exists now, let's activate it"
 source _env/bin/activate
+echo "Loading the requirements"
+pip install -r requirements.txt
+
 echo "The virtual environnement has been activated, running the python code ..."
 
 python main.py
