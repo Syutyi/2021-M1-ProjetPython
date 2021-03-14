@@ -31,6 +31,7 @@ class Order:
         else:
             return other.__quantity  # Return the minimum quantity
 
+    # Getters
     def id(self):
         return self.__id
 
@@ -124,10 +125,14 @@ class Book:
     def create_dataframe_from_order_list(self, order_list, sell):
         # Contains "SELL" if it is a selling order and "BUY" if not
         action_list = []
+
+        # The list of all the information
         quantity_list = []
         price_list = []
         id_list = []
         name_list = []
+
+        # Creating the lists (with all the data)
         for i in range(len(order_list)):
             if sell:
                 action_list.append("SELL")
@@ -137,6 +142,8 @@ class Book:
             quantity_list.append(order_list[i].quantity())
             price_list.append(order_list[i].price())
             id_list.append(order_list[i].id())
+
+        # Coverting the lists to a panda dataframe
         data_to_be_converted = {'Book': name_list, 'Action': action_list, 'Quantity': quantity_list,
                                 'Price': price_list, 'ID': id_list}
         df = pd.DataFrame(data=data_to_be_converted)
