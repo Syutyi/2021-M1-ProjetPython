@@ -157,10 +157,15 @@ class Book:
         print("-----------------------------------------------------------")
         print("-----------------------------------")
         print("\n  ----- Sell-side dataframe -----")
-        print(sell_df)
-        print("\n-----------------------------------")
+        if not sell_df.empty:
+            print(sell_df)
+        else :
+            print("\n      The dataframe is empty")
         print("\n  ------ Buy-side dataframe -----")
-        print(buy_df)
+        if not buy_df.empty:
+            print(buy_df)
+        else:
+            print("       The dataframe is empty")
         print("\n-----------------------------------")
         print("-----------------------------------------------------------")
 
