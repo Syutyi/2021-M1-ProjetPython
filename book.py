@@ -154,8 +154,7 @@ class Book:
         buy_df = self.create_dataframe_from_order_list(self.buy_orders, False)
         # Creating a data frame for the sell odrers
         sell_df = self.create_dataframe_from_order_list(self.sell_orders, True)
-        print("-----------------------------------------------------------")
-        print("-----------------------------------")
+        print("\n-----------------------------------")
         print("\n  ----- Sell-side dataframe -----")
         if not sell_df.empty:
             print(sell_df)
@@ -166,17 +165,16 @@ class Book:
             print(buy_df)
         else:
             print("       The dataframe is empty")
-        print("\n-----------------------------------")
-        print("-----------------------------------------------------------")
+        print("\n-----------------------------------------------------------")
 
     def print_infos(self, sell):
         # Printing the last element that has been added the list (the new order that has been inserted)
         if sell:
-            print("--- Insert SELL ", self.sell_orders[-1].quantity(), "@", self.sell_orders[-1].price(), " id =",
+            print("\n--- Insert SELL ", self.sell_orders[-1].quantity(), "@", self.sell_orders[-1].price(), " id =",
                   self.sell_orders[-1].id(), " on ", self.__name)
             self.executed_Order(True)
         else:
-            print("--- Insert BUY ", self.buy_orders[-1].quantity(), "@", self.buy_orders[-1].price(), " id =",
+            print("\n--- Insert BUY ", self.buy_orders[-1].quantity(), "@", self.buy_orders[-1].price(), " id =",
                   self.buy_orders[-1].id(), " on ", self.__name)
             self.executed_Order(False)
         # Sorting the order book at each step
