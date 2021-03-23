@@ -62,7 +62,6 @@ class Book:
         # orders, it can be used)
         self.buy_orders.reverse()  # Reversing the list (since we want the orders that have a higher price first)
         self.sell_orders.sort()  # Same
-        self.sell_orders.reverse()  # Same
 
     def executed_Order(self, sell):
         if sell:
